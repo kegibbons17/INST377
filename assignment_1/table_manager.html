@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <!-- CSS -->
@@ -200,13 +201,146 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+	<div id="org_table">
+        <table id="answers"></table>
+   </div>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
 console.log(organizations[0]); 
 
+
 // Your JavaScript code goes here
+
+var org = document.getElementById("org_table");
+
+//number of nonprofits
+var nonprof = 0;
+for(var i=0; i<organizations.length; i++){
+	if(organizations[i]["Organization Type"] == "Nonprofit"){
+		nonprof++;
+	}
+}
+//this is how I was checking my output on the console
+/*console.log(nonprof);
+var q1 = document.createElement("P");
+var node = document.createTextNode("Question 1:" + nonprof);
+q1.appendChild(node);
+org.appendChild(q1);
+*/
+
+//orgs less than 10 years
+var lessTen = 0;
+for(var i=0; i<organizations.length; i++){
+	if(organizations[i]["Founding Year"]){
+		var fy = (new Date()).getFullYear() - organizations[i]["Founding Year"];
+		if (fy < 10){
+			lessTen++
+		}
+	}
+}
+//this is how I was checking my output on the console
+/*console.log(lessTen);
+var q2 = document.createElement("P");
+var node2 = document.createTextNode("Question 2:" + lessTen);
+q2.appendChild(node2);
+org.appendChild(q2);
+*/
+
+//orgs within north america
+var norAmer = 0;
+for(var i=0; i<organizations.length; i++){
+	if(organizations[i]["Region"] == "North America"){
+		norAmer++;
+	}
+}
+//this is how I was checking my output on the console
+/*console.log(norAmer);
+var q3 = document.createElement("P");
+var node3 = document.createTextNode("Question 3:" + norAmer);
+q3.appendChild(node3);
+org.appendChild(q3);
+*/
+
+//orgs that use transportation type of data
+var useTransport = 0;
+for(var i=0; i<organizations.length; i++){
+	if(organizations[i]["Type of Data Used"].includes("Transportation")){
+		useTransport++;
+	}
+}
+//this is how I was checking my output on the console
+/*console.log(useTransport);
+var q4 = document.createElement("P");
+var node4 = document.createTextNode("Question 4:" + useTransport);
+q4.appendChild(node4);
+org.appendChild(q4);
+*/
+
+var highIncome = 0;
+for(var i=0; i<organizations.length; i++){
+	if(organizations[i]["Country Income Level"] == "High income"){
+		highIncome++;
+	}
+}
+//this is how I was checking my output on the console
+/*console.log(highIncome);
+var q5 = document.createElement("P");
+var node5 = document.createTextNode("Question 5:" + highIncome);
+q4.appendChild(node5);
+org.appendChild(q45;
+*/
+
+//retrieiving the table
+var table = document.getElementById("answers");
+
+//black border for the table
+answers.style.border = "1px solid black";
+
+//header for the table
+var header = table.createTHead();
+
+//labeling the table
+var row = header.insertRow(0);
+var col = row.insertCell(0);
+col.innerHTML = "<u>Question</u>";
+var col2 = row.insertCell(1);
+col2.innerHTML = "<u>Answer</u>";
+
+//first row and col
+var row1 = table.insertRow(1);
+var title1 = row1.insertCell(0);
+var answer1 = row1.insertCell(1);
+title1.innerHTML = "Non Profit Organizations";
+answer1.innerHTML = nonprof;
+
+//second row and col
+var row2 = table.insertRow(2);
+var title2 = row2.insertCell(0);
+var answer2 = row2.insertCell(1);
+title2.innerHTML = "Organizations with Less than 10 years";
+answer2.innerHTML = lessTen;
+
+//third row and col
+var row3 = table.insertRow(3);
+var title3 = row3.insertCell(0);
+var answer3 = row3.insertCell(1);
+title3.innerHTML = "Organizations in North America";
+answer3.innerHTML = norAmer;
+
+//fourth row and col
+var row4 = table.insertRow(4);
+var title4 = row4.insertCell(0);
+var answer4 = row4.insertCell(1);
+title4.innerHTML = "Organizations that Use Transportation";
+answer4.innerHTML = useTransport;
+
+//fifth row and col
+var row5 = table.insertRow(5);
+var title5 = row5.insertCell(0);
+var answer5 = row5.insertCell(1);
+title5.innerHTML = "Organizations with High Income";
+answer5.innerHTML = highIncome;
 
 
 </script>
